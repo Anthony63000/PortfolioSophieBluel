@@ -133,6 +133,53 @@ li:hover {
 	grid-row-gap: 20px;
 }
 
+.filters {
+	height: 37px;
+	margin: 51px auto;
+	max-width: 585px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+.filter {
+	display: flex;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	font-size: 16px;
+	height: 19px;
+	align-items: center;
+	text-align: center;
+	font-family: 'Syne';
+	color: #1D6154;
+	white-space: nowrap;
+	max-width: 198px;
+	font-weight: 700;
+}
+
+.filter:nth-child(1){
+	padding: 9px 30px 9px 28px;
+}
+
+.filter:nth-child(2){
+	padding: 9px 22px 9px 20px;
+}
+
+.filter:nth-child(3){
+	padding: 9px 15px 9px 14px;
+}
+
+.filter:nth-child(4){
+	padding: 9px 11px 9px 9px;
+}
+
+.filter:hover {
+	background-color: #1D6154;
+	color: #fff;
+}
+
 .gallery img {
 	width: 100%;
 

@@ -6,9 +6,11 @@ let newFigcaption;
 let newImage;
 let newFigure;
 
+
 fetch("http://localhost:5678/api/works")
     .then(data => data.json())
     .then(jsonListWorks => {
+        function genererWork(jsonListWorks) {
         for (let i = 0; i < jsonListWorks.length; i++) {
 
             newFigure = document.createElement("figure");
@@ -20,9 +22,68 @@ fetch("http://localhost:5678/api/works")
 
             newImage.src = jsonListWorks[i].imageUrl;
             newFigcaption.innerHTML = jsonListWorks[i].title;
+        
         }
-        console.log(imageContainer);
-    });
+    }
+    
+    genererWork(jsonListWorks);
+        // Ajout de la barre de filtre 
+
+        let containerFilter = document.createElement('div');
+        containerFilter.classList.add('filters');
+        imageContainer.insertAdjacentElement('beforebegin', containerFilter);
+
+        let newFilter; 
+        let filtercategory;
+        
+        fetch("http://localhost:5678/api/categories")
+            .then(data => data.json())
+            .then(jsonListCategory => {
+                
+                jsonListCategory.unshift({"id": 4, "name": "Tous"});
+                
+                for (let i = 0; i < jsonListCategory.length; i++) {
+
+                    newFilter = document.createElement("div");
+                    newFilter.classList.add("filter");
+                    containerFilter.appendChild(newFilter);
+                    newFilter.innerHTML = jsonListCategory[i].name;
+
+                    newFilter.addEventListener("click", () => {
+                        if (jsonListCategory[i].id === 1) {
+                            filtercategory = jsonListWorks.filter(category => category.categoryId === 1);
+                        }
+                        else if (jsonListCategory[i].id === 2) {
+                            filtercategory = jsonListWorks.filter(category => category.categoryId === 2);
+                        }
+                        else if (jsonListCategory[i].id === 3) {
+                            filtercategory = jsonListWorks.filter(category => category.categoryId === 3);
+                        }
+                        else  {
+                            filtercategory = jsonListWorks.filter(category => category.categoryId);
+                        }
+                        document.querySelector(".gallery").innerHTML='';
+                        genererWork(filtercategory);
+                    })  
+
+                }
+                
+                // On slectionne nos filtres
+
+                
+    
+            // filtrer les catégories 
+       
+                    
+                    
+        });
+                
+});
+
+        
+  
 
 
+   
 
+   
