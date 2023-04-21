@@ -6,27 +6,29 @@ let newFigcaption;
 let newImage;
 let newFigure;
 
+function genererWork(jsonListWorks) {
+    for (let i = 0; i < jsonListWorks.length; i++) {
+
+        newFigure = document.createElement("figure");
+        newImage = document.createElement ("img");
+        newFigcaption = document.createElement("figcaption");
+        imageContainer.appendChild(newFigure);
+        newFigure.appendChild(newImage);
+        newFigure.appendChild(newFigcaption);
+
+        newImage.src = jsonListWorks[i].imageUrl;
+        newFigcaption.innerHTML = jsonListWorks[i].title;
+    
+    }
+}
+
 
 fetch("http://localhost:5678/api/works")
     .then(data => data.json())
     .then(jsonListWorks => {
-        function genererWork(jsonListWorks) {
-        for (let i = 0; i < jsonListWorks.length; i++) {
-
-            newFigure = document.createElement("figure");
-            newImage = document.createElement ("img");
-            newFigcaption = document.createElement("figcaption");
-            imageContainer.appendChild(newFigure);
-            newFigure.appendChild(newImage);
-            newFigure.appendChild(newFigcaption);
-
-            newImage.src = jsonListWorks[i].imageUrl;
-            newFigcaption.innerHTML = jsonListWorks[i].title;
         
-        }
-    }
+        genererWork(jsonListWorks);
     
-    genererWork(jsonListWorks);
         // Ajout de la barre de filtre 
 
         let containerFilter = document.createElement('div');
@@ -66,18 +68,8 @@ fetch("http://localhost:5678/api/works")
                         genererWork(filtercategory);
                     })  
 
-                }
-                
-                // On slectionne nos filtres
-
-                
-    
-            // filtrer les catégories 
-       
-                    
-                    
-        });
-                
+                }         
+        });            
 });
 
         

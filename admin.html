@@ -6,18 +6,42 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css" integrity="sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./FrontEnd/assets/style.css">
 </head>
 <body>
+    <div class="modale" id="modal1">
+        <div class="modal1-window">
+            <div class="modal1-close">
+                <i class="fa-solid fa-xmark fa-lg"></i>
+            </div>
+            <div class="modal1-title">
+                <h3>Galerie photo</h3>
+            </div>
+            <div class="modal1-image">
+            </div>
+            <div class="modale1-border">
+            </div>
+            <div class="modale1-add-delete">
+                <input type="submit" value="Ajouter une photo">
+                <input type="submit" value="Supprimer la galerie">
+            </div>
+        </div>
+    </div>
+    <div class="header-modifications">
+        <i class="fa-regular fa-pen-to-square fa-lg"></i>
+        <p>Mode édition</p>
+        <input type="submit" value="publier les changement">
+    </div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li><a href="login.html">login</a></li>
+			<li><a href="login.html">logout</a></li>
 			<li><img src="./FrontEnd/assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -26,6 +50,10 @@
 	<section id="introduction">
 		<figure>
 			<img src="./FrontEnd/assets/images/sophie-bluel.png" alt="">
+            <div class="profil-modifications">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <input type="submit" value="modifier">
+            </div>
 		</figure>
 		<article>
 			<h2>Designer d'espace</h2>
@@ -35,7 +63,11 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+        <div class="projets-modifications">
+		    <h2>Mes Projets</h2>
+            <i class="fa-regular fa-pen-to-square fa-lg"></i>
+            <a href="#modal1">modifier</a>
+        </div>
 		<div class="gallery">
 		</div>
 	</section>
@@ -53,7 +85,6 @@
 		</form>
 	</section>
 </main>
-
 <footer>
 	<nav>
 		<ul>
@@ -62,7 +93,7 @@
 	</nav>
 </footer>
 
-<script src="./FrontEnd/assets/homepage.js"></script>
+<script src="./FrontEnd/assets/admin.js"></script>
 
 </body>
 </html>
