@@ -13,27 +13,58 @@
 </head>
 <body>
     <div class="modale" id="modal1">
-        <div class="modal1-window">
+        <div id="modal1-window" class="modal1-window">
             <div class="modal1-close">
-                <i class="fa-solid fa-xmark fa-lg"></i>
+                <i class="fa-solid fa-xmark fa-lg" id="modal-close"></i>
             </div>
             <div class="modal1-title">
                 <h3>Galerie photo</h3>
             </div>
             <div class="modal1-image">
             </div>
-            <div class="modale1-border">
+            <div class="modal1-border">
             </div>
-            <div class="modale1-add-delete">
-                <input type="submit" value="Ajouter une photo">
+            <div class="modal1-add-delete">
+                <input id="add-picture" type="submit" value="Ajouter une photo">
                 <input type="submit" value="Supprimer la galerie">
+            </div>
+        </div>
+		<div id="modal2-window" class="modal1-window">
+            <div class="modal1-close">
+                <i class="fa-solid fa-xmark fa-lg" id="modal-close"></i>
+				<i class="fa-solid fa-arrow-left-long fa-lg arrow-return"></i>
+            </div>
+            <div class="modal1-title">
+                <h3>Ajout photo</h3>
+            </div>
+            <div class="modal2-image">
+				<i id="icon-image" class="fa-sharp fa-regular fa-image"></i>
+				<img class="upload-img" src="#">
+				<form action="">
+					<input type="file" id="fichier" name="fichier">
+					<label class="label-input" for="fichier">+ Ajouter photo</label>
+					<label class="modal2-image-input" for="fichier">jpg, png : 4mo max</label>
+				</form>
+            </div>
+			<div class="form-add-picture">
+				<form action="" method="post">
+					<h3>Titre</h3>
+					<input type="text">
+					<h3>Catégorie</h3>
+					<select name="category" id="category-picture"></select>
+				</form>
+			</div>
+            <div class="modal1-border">
+            </div>
+            <div class="modal1-add-delete">
+                <input type="submit" value="Valider">
             </div>
         </div>
     </div>
     <div class="header-modifications">
         <i class="fa-regular fa-pen-to-square fa-lg"></i>
         <p>Mode édition</p>
-        <input type="submit" value="publier les changement">
+        <input class="validation" type="submit" value="publier les changement">
     </div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -66,7 +97,7 @@
         <div class="projets-modifications">
 		    <h2>Mes Projets</h2>
             <i class="fa-regular fa-pen-to-square fa-lg"></i>
-            <a href="#modal1">modifier</a>
+            <a id="open-modal" href="#modal1">modifier</a>
         </div>
 		<div class="gallery">
 		</div>
@@ -93,7 +124,9 @@
 	</nav>
 </footer>
 
-<script src="./FrontEnd/assets/admin.js"></script>
+<script src="./FrontEnd/assets/variables.js" type="module"></script>
+<script src="./FrontEnd/assets/function.js" type="module"></script>
+<script src="./FrontEnd/assets/admin.js" type="module"></script>
 
 </body>
 </html>
