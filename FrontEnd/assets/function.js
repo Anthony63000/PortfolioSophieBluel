@@ -92,6 +92,7 @@ export function genererWorkModal(jsonListWorks, newFigureModal, newImageModal, r
         newImageModal.src = jsonListWorks[i].imageUrl;
         newFigcaptionModal.innerHTML = "éditer";
         newFigureModal.id = jsonListWorks[i].id
+        
     }
 }
 

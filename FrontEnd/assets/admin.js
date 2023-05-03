@@ -23,7 +23,7 @@ fetch("http://localhost:5678/api/works")
       let removedFigureId = [];
       let validation = document.querySelector('.validation');
       const headers = new Headers();
-      headers.append("Authorization", 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4Mjk1MTE5MiwiZXhwIjoxNjgzMDM3NTkyfQ.RIbZISalQft8RoIB7D5kvDf-5dAbxG5CzeOK93_GJXU');
+      headers.append("Authorization", 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4MzEwMzE1OSwiZXhwIjoxNjgzMTg5NTU5fQ.lDxkLElPUd3DCafOhaDX4VR651Lku-xR1jifYdSmpik');
 
       trash.forEach((trashElement) => {
         trashElement.addEventListener("click", () => {
@@ -131,10 +131,11 @@ fetch("http://localhost:5678/api/categories")
       for(let i = 0; i < jsonListCategory.length; i++) {
         selectOption = document.createElement("option");
         selectCategory.appendChild(selectOption);
+        selectOption.classList.add('option');
 
-        selectOption.innerHTML = jsonListCategory[i].name
-      }
-});  
+        selectOption.innerHTML = jsonListCategory[i].name;
+        selectOption.value = jsonListCategory[i].id;
+      }  
 
 // Affichage de l'image slectionné pour être ajouter au projet 
 
@@ -147,13 +148,13 @@ let uploadImage = document.querySelector('.upload-img');
 function loadingImage(event) {
   let reader = new FileReader();
   reader.onload = function() {
-    uploadImage.src = reader.result;
+  uploadImage.src = reader.result;
   }
   reader.readAsDataURL(event.target.files[0]);
 }
 
 function loadImage (iconImage, inputImage, labelImage, labelInputImage, uploadImage) {
-  inputImage.addEventListener("change", function(event) {
+    inputImage.addEventListener("change", function(event) {
     inputImage.style.display = "none";
     labelImage.style.display = "none";
     labelInputImage.style.display = "none";
@@ -164,8 +165,49 @@ function loadImage (iconImage, inputImage, labelImage, labelInputImage, uploadIm
   })  
 }
 
-
 loadImage(iconImage, inputImage, labelImage, labelInputImage, uploadImage);
+
+// Envoie du formulaire pour ajouter un projet 
+
+let formTitle = document.querySelector("#title-input");
+
+function uploadWork(formTitle, selectOption, inputImage) {
+  let formData = new FormData();
+  formData.append("image", inputImage.files[0]);
+  formData.append("title", formTitle.value);
+  formData.append("category", selectCategory.value);
+  fetch("http://localhost:5678/api/works", {
+    method: 'POST',
+    headers: {
+      "Authorization": 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY4MzEwMzE1OSwiZXhwIjoxNjgzMTg5NTU5fQ.lDxkLElPUd3DCafOhaDX4VR651Lku-xR1jifYdSmpik',
+      'accept': 'application/json',
+    },
+    body: formData
+  })
+  .then(response => response.json()) 
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+}
+
+let submitSendWork = document.querySelector("#submit-send-work");
+let uploadWorkadd = document.querySelector('.validation');
+
+uploadWorkadd.addEventListener('click', () => {
+  uploadWork(formTitle, selectOption, inputImage);
+})
+
+submitSendWork.addEventListener("click", () => {
+  modal1.style.display = "none";
+})
+
+
+
+});
+
+
+
+
+
 
 
 
