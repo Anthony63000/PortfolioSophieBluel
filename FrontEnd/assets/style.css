@@ -180,10 +180,10 @@ li:hover {
 	padding: 9px 11px 9px 9px;
 }
 
-.filter:hover {
+/*.filter:active {
 	background-color: #1D6154;
 	color: #fff;
-}
+}*/
 
 .gallery img {
 	width: 100%;
@@ -240,6 +240,11 @@ footer nav ul {
 }
 
 /* Page login */
+
+.return-homepage :hover {
+	cursor: pointer;
+	
+}
 
 .li-bold {
 	font-weight: 700;
