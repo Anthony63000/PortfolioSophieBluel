@@ -28,64 +28,55 @@ export function genererWork(jsonListWorks, imageContainer, newFigure, newFigcapt
 
         newImage.src = jsonListWorks[i].imageUrl;
         newFigcaption.innerHTML = jsonListWorks[i].title;
-    
     }
 }
 
 // Fonction pour l'ajout des barres de filtres 
 
-export function addFilterBar(imageContainer, containerFilter) {
+export function addFilterBar(imageContainer, containerFilter, newFilter, jsonListCategory) {
     containerFilter.classList.add('filters');
     imageContainer.insertAdjacentElement('beforebegin', containerFilter);
+
+    for (let i = 0; i < jsonListCategory.length; i++) {
+
+      newFilter = document.createElement("div");
+      newFilter.classList.add("filter");
+      containerFilter.appendChild(newFilter);
+      newFilter.innerHTML = jsonListCategory[i].name;
+      newFilter.style.cursor = "pointer";
+    } 
 }
 
 // Fonction pour filtrer les travaux 
 
-export function filterWork(jsonListCategory, jsonListWorks, containerFilter, newFilter, filterCategory, imageContainer) {
-    for (let i = 0; i < jsonListCategory.length; i++) {
+export function filterWork(jsonListCategory, jsonListWorks, newFilter, filterCategory, imageContainer) {
 
-        imageContainer = document.querySelector('.gallery');
-        newFilter = document.createElement("div");
-        newFilter.classList.add("filter");
-        containerFilter.appendChild(newFilter);
-        newFilter.innerHTML = jsonListCategory[i].name;
+  imageContainer = document.querySelector(".gallery");
+  newFilter = document.querySelectorAll('.filter');
+  newFilter[0].classList.add("filter-selected");
+  console.log(newFilter);
 
-        newFilter.addEventListener("click", () => {
-            if (jsonListCategory[i].id === 1) {
-                filterCategory = jsonListWorks.filter(category => category.categoryId === 1);
-            }
-            else if (jsonListCategory[i].id === 2) {
-                filterCategory = jsonListWorks.filter(category => category.categoryId === 2);
-            }
-            else if (jsonListCategory[i].id === 3) {
-                filterCategory = jsonListWorks.filter(category => category.categoryId === 3);
-            }
-            else  {
-                filterCategory = jsonListWorks.filter(category => category.categoryId);
-            }
-            document.querySelector(".gallery").innerHTML='';
-            genererWork(filterCategory, imageContainer);
-        })  
-    }   
-}
-
-// Variable pour garder la couleur sur la barre de filtres lorsqu'il est cliqué
-
-let filtersBar = document.querySelectorAll('filter');
-
-export {filtersBar}
-
-// Fonction pour garder la couleur sur la barre de filtres lorsqu'il est cliqué
-
-export function filterChangeColor(filtersBar) {
-  filtersBar.forEach((filter) => {
+  newFilter.forEach((filter, i) => {
     filter.addEventListener("click", () => {
-      filter.style.backgroundColor = "red";
-      filter.style.display = "none";
-      console.log(filter);
-    })
+      
+      newFilter.forEach(otherFilter => otherFilter.classList.remove('filter-selected'));
+      filter.classList.add('filter-selected');
+
+      if (jsonListCategory[i].id === 1) {
+        filterCategory = jsonListWorks.filter(category => category.categoryId === 1);
+      } else if (jsonListCategory[i].id === 2) {
+        filterCategory = jsonListWorks.filter(category => category.categoryId === 2);
+      } else if (jsonListCategory[i].id === 3) {
+        filterCategory = jsonListWorks.filter(category => category.categoryId === 3);
+      } else  {
+        filterCategory = jsonListWorks.filter(category => category.categoryId);
+      }
+      imageContainer.innerHTML='';
+      genererWork(filterCategory, imageContainer);
+    }) 
   })
 }
+
 
 // Fonction et variable de la page login //
 
@@ -313,16 +304,17 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
   // Variable pour l'envoi du formulaire 
 
   let formTitle = document.querySelector("#title-input");
+  let formData = new FormData();
 
-  export {formTitle}
+  export {formTitle, formData}
 
   // fonction pour l'envoi du formulaire 
 
-  function uploadWork(formTitle, selectCategory, inputImage, token) {
-    let formData = new FormData();
+  function uploadWork(formTitle, selectCategory, inputImage, token, formData) {
     formData.append("image", inputImage.files[0]);
     formData.append("title", formTitle.value);
     formData.append("category", selectCategory.value);
+    console.log(formTitle.value)
     fetch("http://localhost:5678/api/works", {
       method: 'POST',
       headers: {
@@ -334,29 +326,61 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
     .then(response => response.json()) 
     .then(data => console.log(data))
     .catch(error => console.log(error));
-  }
+   }
 
   // Variables pour l'ajout définitif de l'image 
 
   let submitSendWork = document.querySelector("#submit-send-work");
   let uploadWorkadd = document.querySelector('.validation');
   let token = localStorage.getItem('authToken');
+  let modalImage2 = document.querySelector('.modal2-image');
 
-  export {submitSendWork, uploadWorkadd, token}
+  export {submitSendWork, uploadWorkadd, token, modalImage2}
 
   // Fonction pour l'ajout définif de la page 
 
   export function confirmWorkAdd(uploadWorkadd) {
     uploadWorkadd.addEventListener('click', () => {
-      uploadWork(formTitle, selectCategory, inputImage, token);
+      uploadWork(formTitle, selectCategory, inputImage, token, formData);
     })
   }
 
-  // Fonction pour la fermeture de la modale lors du click de confirmation de la mdoale 2
+  // Fonction pour la fermeture de la modale lors du click de confirmation de la modal 2
 
-  export function closeModalToConfirm(submitSendWork) {
+  export function closeModalToConfirm(submitSendWork, formTitle, inputImage, modalImage2) {  
     submitSendWork.addEventListener("click", () => {
-      modal1.style.display = "none";
+      if(formTitle.value !=="" && inputImage.files.length > 0) {
+        modal1.style.display = "none";
+      } else if (formTitle.value ==="" && inputImage.files.length > 0) {
+         formTitle.style.border = "2px solid red";
+         modalImage2.style.border = "none";
+       } else if (formTitle.value !=="" && inputImage.files.length < 0) {
+         formTitle.style.border = "none";
+         modalImage2.style.border ="2px solid red";
+       }
+      else {
+        formTitle.style.border = "2px solid red";
+        modalImage2.style.border ="2px solid red";
+      }
+    })
+  }
+
+  // Fonction pour le comportement de l'input du formulaire 
+
+  export function formTitleComportement(formTitle, modalImage2) {
+    formTitle.addEventListener("input", () => {
+      if(formTitle.value === "") {
+        formTitle.style.border = "2px solid red";
+      } else {
+        formTitle.style.border = "none";
+      }
+    })
+    inputImage.addEventListener("input", () => {
+      if(inputImage.files.length < 0) {
+        modalImage2.style.border = "2 px solid red";
+      } else {
+        modalImage2.style.border = "none";
+      }
     })
   }
 
@@ -391,6 +415,7 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
           .then(response => {
               if(response.ok) {
                   console.log("L'image à bien était supprimé");
+                  alert("Limage à bien été supprimé");
               }
               else {
                   console.log("Une erreur est survenu.")

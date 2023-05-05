@@ -180,10 +180,10 @@ li:hover {
 	padding: 9px 11px 9px 9px;
 }
 
-/*.filter:active {
+.filter-selected {
 	background-color: #1D6154;
 	color: #fff;
-}*/
+}
 
 .gallery img {
 	width: 100%;

@@ -6,13 +6,13 @@ import {buttonAddPicture, windowModal1, windowModal2, returnArrow,
   figureModal, figureId, removedFigureId, validation, headers, modal1,
   modalClose, modalOpen,newFigcaptionModal, newImageModal, newFigureModal,
   removeTrash, removeTrashContainer, imageContainerModal, newFigure,
-  newImage, newFigcaption, imageContainer} from "../assets/function.js";
+  newImage, newFigcaption, imageContainer, modalImage2} from "../assets/function.js";
 
 // Import des fonctions pour la page admin
 
 import { genererWork, genererWorkModal, closeModal, openModal2,
 returnModal, openModal,closeModalClickOut, categoryInput, loadImage,
-confirmWorkAdd, closeModalToConfirm, deleteWorkModal } from "../assets/function.js";
+confirmWorkAdd, closeModalToConfirm, deleteWorkModal, formTitleComportement } from "../assets/function.js";
 
 // Admin //
 
@@ -77,7 +77,9 @@ confirmWorkAdd(uploadWorkadd);
 
 // Fermeture de la modale lors du click de la confiramtion de la modale 2 
 
-closeModalToConfirm(submitSendWork);
+closeModalToConfirm(submitSendWork, formTitle, inputImage, modalImage2);
+
+formTitleComportement(formTitle, modalImage2);
 
 });
 
