@@ -6,7 +6,7 @@ import { newFigure, newImage, newFigcaption, newFilter, filterCategory,
 
 // Import des fonctions pour la homepage
 
-import { genererWork, addFilterBar, filterWork} from "../assets/function.js";
+import { generateWork, addFilterBar, filterWork} from "../assets/function.js";
 
 // Homepage //
 
@@ -16,7 +16,7 @@ fetch("http://localhost:5678/api/works")
         
         // Ajout des travaux de l'arichitecte
 
-        genererWork(jsonListWorks, imageContainer, newFigure, newFigcaption, newImage);
+        generateWork(jsonListWorks, imageContainer, newFigure, newFigcaption, newImage);
 
         // Filtrer les travaux
         

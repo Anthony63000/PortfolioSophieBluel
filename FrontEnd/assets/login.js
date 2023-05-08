@@ -1,11 +1,16 @@
 // import des variables pour la page login 
 
-import {form, user} from '../assets/function.js';
+import {form, emailUser, passwordUser} from '../assets/function.js';
 
 // Import des fonctions pour la page login
 
-import {login} from '../assets/function.js';
+import {login, loginComportement} from '../assets/function.js';
 
 // Login
 
-login(form, user);
+login(form);
+
+// Comportement du formulaire 
+
+loginComportement(emailUser, passwordUser);
+

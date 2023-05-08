@@ -15,7 +15,7 @@ export {newFigure, newImage, newFigcaption, newFilter, filterCategory, imageCont
 
 // Fonction pour génerer les travaux
 
-export function genererWork(jsonListWorks, imageContainer, newFigure, newFigcaption, newImage) {
+export function generateWork(jsonListWorks, imageContainer, newFigure, newFigcaption, newImage) {
 
     for (let i = 0; i < jsonListWorks.length; i++) {
 
@@ -54,7 +54,6 @@ export function filterWork(jsonListCategory, jsonListWorks, newFilter, filterCat
   imageContainer = document.querySelector(".gallery");
   newFilter = document.querySelectorAll('.filter');
   newFilter[0].classList.add("filter-selected");
-  console.log(newFilter);
 
   newFilter.forEach((filter, i) => {
     filter.addEventListener("click", () => {
@@ -72,7 +71,7 @@ export function filterWork(jsonListCategory, jsonListWorks, newFilter, filterCat
         filterCategory = jsonListWorks.filter(category => category.categoryId);
       }
       imageContainer.innerHTML='';
-      genererWork(filterCategory, imageContainer);
+      generateWork(filterCategory, imageContainer);
     }) 
   })
 }
@@ -83,16 +82,12 @@ export function filterWork(jsonListCategory, jsonListWorks, newFilter, filterCat
 // variables page login 
 
 const form = document.querySelector('.form');
-const user = {
-    email: "sophie.bluel@test.tld",
-    password: "S0phie"
-}
 
-export {form, user}
+export {form}
 
 // Fonction et variables page admin //
 
-export function login(form, user) {
+export function login(form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -119,12 +114,39 @@ export function login(form, user) {
         console.error(error);
         let errorIdentification = document.querySelector(".error");
         errorIdentification.style.display = "block";
-
+        emailUser.style.border = "2px solid red";
+        passwordUser.style.border = "2px solid red";
         form.addEventListener("click", () => {
           errorIdentification.style.display = "none";
         })
       });
     });
+  }
+
+  // Variable pour le comportement du formulaire 
+
+  let emailUser = document.querySelector("#email");
+  let passwordUser = document.querySelector("#password");
+
+  export {emailUser, passwordUser}
+
+  // Fonction de gestion du comportement des erreurs du formulaire de connexion
+
+  export function loginComportement(emailUser, passwordUser) {
+    emailUser.addEventListener("input", () => {
+      if(emailUser.value === "") {
+        emailUser.style.border = "2px solid red";
+      } else {
+        emailUser.style.border = "none";
+      }
+    })
+    passwordUser.addEventListener("input", () => {
+      if(passwordUser.value === "") {
+        passwordUser.style.border = "2px solid red";
+      } else {
+        passwordUser.style.border = "none";
+      }
+    })
   }
 
 // variables modale pour la génération 
@@ -349,12 +371,12 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
 
   export function closeModalToConfirm(submitSendWork, formTitle, inputImage, modalImage2) {  
     submitSendWork.addEventListener("click", () => {
-      if(formTitle.value !=="" && inputImage.files.length > 0) {
+      if(formTitle.value !== "" && inputImage.files.length > 0) {
         modal1.style.display = "none";
-      } else if (formTitle.value ==="" && inputImage.files.length > 0) {
+      } else if (formTitle.value === "" && inputImage.files.length > 0) {
          formTitle.style.border = "2px solid red";
          modalImage2.style.border = "none";
-       } else if (formTitle.value !=="" && inputImage.files.length < 0) {
+       } else if (formTitle.value !== "" && inputImage.files.length === 0) {
          formTitle.style.border = "none";
          modalImage2.style.border ="2px solid red";
        }
@@ -415,7 +437,6 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
           .then(response => {
               if(response.ok) {
                   console.log("L'image à bien était supprimé");
-                  alert("Limage à bien été supprimé");
               }
               else {
                   console.log("Une erreur est survenu.")

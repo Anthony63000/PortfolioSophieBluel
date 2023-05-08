@@ -10,7 +10,7 @@ import {buttonAddPicture, windowModal1, windowModal2, returnArrow,
 
 // Import des fonctions pour la page admin
 
-import { genererWork, genererWorkModal, closeModal, openModal2,
+import { generateWork, genererWorkModal, closeModal, openModal2,
 returnModal, openModal,closeModalClickOut, categoryInput, loadImage,
 confirmWorkAdd, closeModalToConfirm, deleteWorkModal, formTitleComportement } from "../assets/function.js";
 
@@ -24,7 +24,7 @@ fetch("http://localhost:5678/api/works")
       genererWorkModal(jsonListWorks, newFigureModal, newImageModal, removeTrash, removeTrashContainer, newFigcaptionModal, imageContainerModal);
 
       // Générer les travaux dans la modale
-      genererWork(jsonListWorks, imageContainer, newFigure, newFigcaption, newImage);
+      generateWork(jsonListWorks, imageContainer, newFigure, newFigcaption, newImage);
 
       // Gestion de la supression des travaux 
       
