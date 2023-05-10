@@ -108,7 +108,7 @@ export function login(form) {
       })
       .then(data => {
         localStorage.setItem('authToken', data.token);
-        window.location.href = "/admin.html";
+        window.location.href = "../admin.html";
       })
       .catch(error => {
         console.error(error);

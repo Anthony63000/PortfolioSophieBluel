@@ -381,17 +381,23 @@ footer nav ul {
 	width: 80%;
 }
 
+#open-modal {
+	font-weight: 400;
+	font-family: 'Syne';
+}
+
 .profil-modifications input {
 	background-color: transparent;
 	margin: 0;
 	color: black;
 	height: fit-content;
 	width: fit-content;
-	font: 14px;
+	font-size: 14px;
 	border-radius: 0;
 	padding: 0;
 	margin-left: 8px;
 	border: none;
+	font-weight: 400;
 }
 
 /* modal */ 
