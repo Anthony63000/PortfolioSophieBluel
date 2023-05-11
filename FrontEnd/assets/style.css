@@ -384,6 +384,8 @@ footer nav ul {
 #open-modal {
 	font-weight: 400;
 	font-family: 'Syne';
+	text-decoration: none;
+	color: black;
 }
 
 .profil-modifications input {

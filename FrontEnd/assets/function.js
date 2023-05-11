@@ -247,17 +247,19 @@ export function returnModal (returnArrow, windowModal1, windowModal2) {
 
 // Variables pour l'ouverture de la première modal
 
-const modalOpen = document.querySelector('#open-modal');
+const modalOpen = document.querySelectorAll('#open-modal');
 export {modalOpen};
    
 // fonction pour l'ouverture de la première modal 
 
 export function openModal(modalOpen,windowModal1, windowModal2) {
-    modalOpen.addEventListener("click", (e) => {
+    modalOpen.forEach((element) => {
+      element.addEventListener("click", (e) => {
         e.preventDefault();
         modal1.style.display = "flex";
         windowModal1.style.display = "flex";
         windowModal2.style.display = "none";
+      })
     })
   }
 
