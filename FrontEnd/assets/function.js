@@ -108,7 +108,7 @@ export function login(form) {
       })
       .then(data => {
         localStorage.setItem('authToken', data.token);
-        window.location.href = "../admin.html";
+        window.location.href = "admin.html";
       })
       .catch(error => {
         console.error(error);
@@ -125,8 +125,8 @@ export function login(form) {
 
   // Variable pour le comportement du formulaire 
 
-  let emailUser = document.querySelector("#email");
-  let passwordUser = document.querySelector("#password");
+  const emailUser = document.querySelector("#email");
+  const passwordUser = document.querySelector("#password");
 
   export {emailUser, passwordUser}
 
@@ -215,9 +215,9 @@ export function closeModal(modalClose, modal1) {
 
 // Variable pour l'ouverture de la modal lors du click sur Ajouter photo
 
-let buttonAddPicture = document.querySelector('#add-picture');
-let windowModal1 = document.querySelector('#modal1-window');
-let windowModal2 = document.querySelector('#modal2-window');
+const buttonAddPicture = document.querySelector('#add-picture');
+const windowModal1 = document.querySelector('#modal1-window');
+const windowModal2 = document.querySelector('#modal2-window');
 
 export {buttonAddPicture, windowModal1, windowModal2}
 
@@ -232,7 +232,7 @@ export function openModal2(buttonAddPicture, windowModal1, windowModal2) {
 
 // Variables pour la flèche de retour a la modal précédente 
 
-let returnArrow = document.querySelector('.arrow-return');
+const returnArrow = document.querySelector('.arrow-return');
 
 export {returnArrow} 
 
@@ -273,7 +273,7 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
 
   // variables pour créer les catégorie dans la modale
   
-  let selectCategory = document.querySelector("#category-picture");
+  const selectCategory = document.querySelector("#category-picture");
   let selectOption;
 
   export {selectCategory, selectOption};
@@ -293,11 +293,11 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
 
   // Variables pour afficher l'image selectionné avant d'être ajouté au projet
 
-  let iconImage = document.querySelector('#icon-image');
-  let inputImage = document.querySelector('#fichier');
-  let labelImage = document.querySelector('.label-input');
-  let labelInputImage = document.querySelector('.modal2-image-input');
-  let uploadImage = document.querySelector('.upload-img');
+  const iconImage = document.querySelector('#icon-image');
+  const inputImage = document.querySelector('#fichier');
+  const labelImage = document.querySelector('.label-input');
+  const labelInputImage = document.querySelector('.modal2-image-input');
+  const uploadImage = document.querySelector('.upload-img');
 
   export {iconImage, inputImage, labelImage, labelInputImage, uploadImage};
 
@@ -325,8 +325,8 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
 
   // Variable pour l'envoi du formulaire 
 
-  let formTitle = document.querySelector("#title-input");
-  let formData = new FormData();
+  const formTitle = document.querySelector("#title-input");
+  const formData = new FormData();
 
   export {formTitle, formData}
 
@@ -352,10 +352,10 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
 
   // Variables pour l'ajout définitif de l'image 
 
-  let submitSendWork = document.querySelector("#submit-send-work");
-  let uploadWorkadd = document.querySelector('.validation');
-  let token = localStorage.getItem('authToken');
-  let modalImage2 = document.querySelector('.modal2-image');
+  const submitSendWork = document.querySelector("#submit-send-work");
+  const uploadWorkadd = document.querySelector('.validation');
+  const token = localStorage.getItem('authToken');
+  const modalImage2 = document.querySelector('.modal2-image');
 
   export {submitSendWork, uploadWorkadd, token, modalImage2}
 
@@ -411,7 +411,7 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
   let figureModal;
   let figureId;
   let removedFigureId = [];
-  let validation = document.querySelector('.validation');
+  const validation = document.querySelector('.validation');
   const headers = new Headers();
   headers.append("Authorization", 'Bearer ' + token);
 
