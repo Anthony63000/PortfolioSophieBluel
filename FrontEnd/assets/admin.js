@@ -6,13 +6,15 @@ import {buttonAddPicture, windowModal1, windowModal2, returnArrow,
   figureModal, figureId, removedFigureId, validation, headers, modal1,
   modalClose, modalOpen,newFigcaptionModal, newImageModal, newFigureModal,
   removeTrash, removeTrashContainer, imageContainerModal, newFigure,
-  newImage, newFigcaption, imageContainer, modalImage2} from "../assets/function.js";
+  newImage, newFigcaption, imageContainer, modalImage2, formTitleComportement, 
+  movePicture, movePictureContainer, firstFigure} from "../assets/function.js";
 
 // Import des fonctions pour la page admin
 
 import { generateWork, genererWorkModal, closeModal, openModal2,
 returnModal, openModal,closeModalClickOut, categoryInput, loadImage,
-confirmWorkAdd, closeModalToConfirm, deleteWorkModal, formTitleComportement } from "../assets/function.js";
+confirmWorkAdd, closeModalToConfirm, deleteWorkModal, addIconFirstFigure,
+confirmChangeColor} from "../assets/function.js";
 
 // Admin //
 
@@ -22,6 +24,10 @@ fetch("http://localhost:5678/api/works")
 
       // Générer la modale
       genererWorkModal(jsonListWorks, newFigureModal, newImageModal, removeTrash, removeTrashContainer, newFigcaptionModal, imageContainerModal);
+
+      // Générer l'icon de déplacement dans la première figure 
+
+      addIconFirstFigure(movePicture, movePictureContainer, firstFigure);
 
       // Générer les travaux dans la modale
       generateWork(jsonListWorks, imageContainer, newFigure, newFigcaption, newImage);
@@ -79,7 +85,8 @@ confirmWorkAdd(uploadWorkadd);
 
 closeModalToConfirm(submitSendWork, formTitle, inputImage, modalImage2);
 
-formTitleComportement(formTitle, modalImage2);
+formTitleComportement(formTitle, modalImage2, inputImage, submitSendWork);
+
 
 });
 

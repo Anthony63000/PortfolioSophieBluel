@@ -157,17 +157,23 @@ let newImageModal;
 let newFigureModal;
 let removeTrashContainer;
 let removeTrash;
+let movePicture;
+let movePictureContainer; 
+let firstFigure;
 
-export {newFigcaptionModal, newImageModal, newFigureModal, removeTrash, removeTrashContainer, imageContainerModal};
+export {newFigcaptionModal, newImageModal, newFigureModal, removeTrash, removeTrashContainer, imageContainerModal, movePicture, movePictureContainer, firstFigure};
 
 // Fonction pour générer la modale
 
-export function genererWorkModal(jsonListWorks, newFigureModal, newImageModal, removeTrash, removeTrashContainer, newFigcaptionModal, imageContainerModal) {
+export function genererWorkModal(jsonListWorks, newFigureModal, newImageModal, removeTrash,
+removeTrashContainer, newFigcaptionModal, imageContainerModal) {
+  
     for (let i = 0; i < jsonListWorks.length; i++) {
 
         newFigureModal = document.createElement("figure");
         newImageModal = document.createElement ("img");
         removeTrashContainer = document.createElement('div');
+        
         removeTrash = document.createElement('i');
         newFigcaptionModal = document.createElement("figcaption");
         newFigureModal.appendChild(removeTrashContainer);
@@ -175,22 +181,38 @@ export function genererWorkModal(jsonListWorks, newFigureModal, newImageModal, r
         imageContainerModal.appendChild(newFigureModal);
         newFigureModal.appendChild(newImageModal);
         newFigureModal.appendChild(newFigcaptionModal);
+
         removeTrashContainer.classList.add("trash-container");
-        removeTrash.classList.add("fa-solid");
-        removeTrash.classList.add("fa-trash-can");
-        removeTrash.classList.add("fa-xs");
+        removeTrash.classList.add("fa-solid", "fa-trash-can", "fa-xs");
         newImageModal.classList.add('image-modal');
+        
         removeTrash.setAttribute("id", "trash");
         removeTrashContainer.setAttribute("id", i + 1);
         removeTrashContainer.setAttribute("class", "trash-container");
         newFigureModal.setAttribute("class", "figure-modal")
         newFigureModal.setAttribute("data-id", i + 1); 
-
         newImageModal.src = jsonListWorks[i].imageUrl;
         newFigcaptionModal.innerHTML = "éditer";
         newFigureModal.id = jsonListWorks[i].id
         
     }
+
+}
+
+// Fonction pour ajouter l'icon à la première figure de la modale 
+
+export function addIconFirstFigure(movePicture, movePictureContainer, firstFigure) {
+  firstFigure = document.querySelectorAll('figure');
+
+  const firstElement = firstFigure[0];
+
+  movePictureContainer = document.createElement('div');
+  movePicture = document.createElement('i');
+  movePictureContainer.classList.add("move-picture-container");
+  movePicture.classList.add("fa-solid", "fa-arrows-up-down-left-right", "fa-xs");
+  firstElement.appendChild(movePictureContainer);
+  movePictureContainer.appendChild(movePicture);
+
 }
 
 // Fermeture de la modal
@@ -392,22 +414,38 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
 
   // Fonction pour le comportement de l'input du formulaire 
 
-  export function formTitleComportement(formTitle, modalImage2) {
+  export function formTitleComportement(formTitle, modalImage2, inputImage, submitSendWork) {
     formTitle.addEventListener("input", () => {
       if(formTitle.value === "") {
         formTitle.style.border = "2px solid red";
+        submitSendWork.style.backgroundColor = "gray";
+      } else if (formTitle.value !== "" && inputImage.files.length > 0) {
+        confirmChangeColor(submitSendWork, formTitle, inputImage)
       } else {
         formTitle.style.border = "none";
       }
     })
     inputImage.addEventListener("input", () => {
       if(inputImage.files.length < 0) {
-        modalImage2.style.border = "2 px solid red";
+        modalImage2.style.border = "2px solid red";
+      } else if (formTitle.value !== "" && inputImage.files.length > 0) {
+        confirmChangeColor(submitSendWork, formTitle, inputImage)
       } else {
         modalImage2.style.border = "none";
       }
     })
   }
+
+  // Fonction pour changer la couleur du bouton validé quand tous les champs sont remplis
+
+  export function confirmChangeColor(submitSendWork, formTitle, inputImage) {
+    
+    if(formTitle.value !== "" && inputImage.files.length > 0) {
+      submitSendWork.style.backgroundColor = "#1D6154";
+    } else {
+      submitSendWork.style.backgroundColor = "gray";
+    }
+}
 
   // Variables pour la suppression des travaux 
 

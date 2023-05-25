@@ -233,6 +233,14 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+#submit-send-work {
+	background-color: gray;
+}
+
+.active {
+	background-color: #1D6154;
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
@@ -470,6 +478,20 @@ footer nav ul {
 	background-color: black;
 	position: absolute;
 	right: 4.81px;
+	top: 6px;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 2px;
+}
+
+.move-picture-container {
+	width: 17px;
+	height: 17px;
+	background-color: black;
+	position: absolute;
+	right: 24.81px;
 	top: 6px;
 	z-index: 2;
 	display: flex;
