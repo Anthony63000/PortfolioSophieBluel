@@ -14,11 +14,13 @@ import {buttonAddPicture, windowModal1, windowModal2, returnArrow,
 import { generateWork, genererWorkModal, closeModal, openModal2,
 returnModal, openModal,closeModalClickOut, categoryInput, loadImage,
 confirmWorkAdd, closeModalToConfirm, deleteWorkModal, addIconFirstFigure,
-confirmChangeColor} from "../assets/function.js";
+confirmChangeColor, isAdmin} from "../assets/function.js";
 
 // Admin //
 
-fetch("http://localhost:5678/api/works")
+isAdmin();
+
+    fetch("http://localhost:5678/api/works")
     .then(data => data.json())
     .then(jsonListWorks => {
 
@@ -26,14 +28,9 @@ fetch("http://localhost:5678/api/works")
       genererWorkModal(jsonListWorks, newFigureModal, newImageModal, removeTrash, removeTrashContainer, newFigcaptionModal, imageContainerModal);
 
       // Générer l'icon de déplacement dans la première figure 
-
       addIconFirstFigure(movePicture, movePictureContainer, firstFigure);
 
-      // Générer les travaux dans la modale
-      generateWork(jsonListWorks, imageContainer, newFigure, newFigcaption, newImage);
-
       // Gestion de la supression des travaux 
-      
       const trash = document.querySelectorAll("#trash");
 
       deleteWorkModal(trash, figureModal, figureId, removedFigureId, validation, headers);
@@ -87,8 +84,11 @@ closeModalToConfirm(submitSendWork, formTitle, inputImage, modalImage2);
 
 formTitleComportement(formTitle, modalImage2, inputImage, submitSendWork);
 
-
 });
+
+
+
+
 
 
 

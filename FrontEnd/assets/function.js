@@ -61,33 +61,32 @@ export function filterWork(jsonListCategory, jsonListWorks, newFilter, filterCat
       newFilter.forEach(otherFilter => otherFilter.classList.remove('filter-selected'));
       filter.classList.add('filter-selected');
 
-      if (jsonListCategory[i].id === 1) {
-        filterCategory = jsonListWorks.filter(category => category.categoryId === 1);
-      } else if (jsonListCategory[i].id === 2) {
-        filterCategory = jsonListWorks.filter(category => category.categoryId === 2);
-      } else if (jsonListCategory[i].id === 3) {
-        filterCategory = jsonListWorks.filter(category => category.categoryId === 3);
-      } else  {
-        filterCategory = jsonListWorks.filter(category => category.categoryId);
-      }
+      const filterCategory = jsonListWorks.filter(category => {
+        if(i < 1) {
+          return true;
+        } else {
+          return category.categoryId === jsonListCategory[i].id;
+        }
+      })
+
       imageContainer.innerHTML='';
       generateWork(filterCategory, imageContainer);
     }) 
   })
 }
 
-
 // Fonction et variable de la page login //
 
 // variables page login 
 
-const form = document.querySelector('.form');
 
-export {form}
+
+//export {form}
 
 // Fonction et variables page admin //
 
-export function login(form) {
+export function login() {
+  const form = document.querySelector('.form');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -108,7 +107,7 @@ export function login(form) {
       })
       .then(data => {
         localStorage.setItem('authToken', data.token);
-        window.location.href = "admin.html";
+        window.location.href = "index.html";
       })
       .catch(error => {
         console.error(error);
@@ -148,6 +147,63 @@ export function login(form) {
       }
     })
   }
+
+  // Fonction pour gérer si l'utilsateur à un compte admnistrateur
+
+  export function isAdmin() {
+
+    const checkToken = localStorage.getItem("authToken");
+
+    if(checkToken) {
+      
+      generatePageAdmin();
+      console.log(checkToken);
+
+    } 
+  }
+
+  // fonction pour générer la déconnexion
+
+  function logout () {
+    let logoutButton = document.querySelector(".login-logout");
+    logoutButton.innerHTML = "logout";
+    logoutButton.addEventListener("click", () => {
+      window.location.href = "index.html";
+      localStorage.removeItem("authToken");
+    })
+  }
+
+  // Fonction pour générer la page administrateur 
+
+  function generatePageAdmin() {
+
+    // générer le header
+    let headerAdmin = document.querySelector(".header-modifications")
+    headerAdmin.style.display = "flex";
+
+    // Générer le boutton de déconnexion
+    logout();
+
+    // Afficher les icons de modification pour ouverture de la modale 
+    let iconModification = document.querySelectorAll(".icon-modal-modification");
+    iconModification.forEach((icon) => {
+      icon.style.display = "flex";
+    })
+
+    // Afficher les boutons pour ouverture de la modale
+    let buttonOpenModal = document.querySelectorAll("#open-modal");
+    buttonOpenModal.forEach((button) => {
+      button.style.display = "flex";
+    })
+    
+    let buttonOpenModalBis = document.querySelector(".profil-modifications").style.display = "flex";
+
+    // Retirer la barre des filtres pour la page admin 
+
+    containerFilter.style.display = "none";
+
+  }
+
 
 // variables modale pour la génération 
 
@@ -360,7 +416,6 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
     formData.append("image", inputImage.files[0]);
     formData.append("title", formTitle.value);
     formData.append("category", selectCategory.value);
-    console.log(formTitle.value)
     fetch("http://localhost:5678/api/works", {
       method: 'POST',
       headers: {

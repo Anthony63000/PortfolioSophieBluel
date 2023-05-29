@@ -126,6 +126,11 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+#portfolio {
+	margin-top: 108px;
+}
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
@@ -334,7 +339,7 @@ footer nav ul {
 	height: 59px;
 	background-color: black;
 	color: white;
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 }
@@ -361,7 +366,7 @@ footer nav ul {
 	display: flex;
 	justify-content: center;
 	height: 36px;
-	margin-bottom: 92px;
+	margin-bottom: 51px;
 }
 
 .projets-modifications a {
@@ -379,14 +384,21 @@ footer nav ul {
 	text-decoration: none;
 }
 
-.projets-modifications i {
+.projets-modifications .icon-modal-modification {
 	margin: 18px 0 0 34.64px;
+	display: none;
 }
 
 .profil-modifications {
 	height: 18px;
 	margin: 13px auto 0 auto;
 	width: 80%;
+	display: none;
+}
+
+.profil-modifications a {
+	margin: 0 0 13px 8px;
+	align-self: center;
 }
 
 #open-modal {
@@ -394,6 +406,7 @@ footer nav ul {
 	font-family: 'Syne';
 	text-decoration: none;
 	color: black;
+	display: none;
 }
 
 .profil-modifications input {
