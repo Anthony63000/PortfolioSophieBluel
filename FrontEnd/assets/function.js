@@ -151,15 +151,12 @@ export function login() {
   // Fonction pour gérer si l'utilsateur à un compte admnistrateur
 
   export function isAdmin() {
-
     const checkToken = localStorage.getItem("authToken");
 
     if(checkToken) {
-      
       generatePageAdmin();
       console.log(checkToken);
-
-    } 
+    }
   }
 
   // fonction pour générer la déconnexion

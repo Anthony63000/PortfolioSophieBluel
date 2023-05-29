@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	max-height: 100%;
 }
 ol, ul {
 	list-style: none;
@@ -430,8 +431,8 @@ footer nav ul {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height:3586px;
-	z-index: 9999;
+	height: 600%;
+	z-index: 100;
 	background: rgba(0, 0, 0, 0.3);
 	display: flex;
 	justify-content: center;

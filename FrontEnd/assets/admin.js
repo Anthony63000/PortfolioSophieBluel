@@ -13,11 +13,12 @@ import {buttonAddPicture, windowModal1, windowModal2, returnArrow,
 
 import { generateWork, genererWorkModal, closeModal, openModal2,
 returnModal, openModal,closeModalClickOut, categoryInput, loadImage,
-confirmWorkAdd, closeModalToConfirm, deleteWorkModal, addIconFirstFigure,
-confirmChangeColor, isAdmin} from "../assets/function.js";
+confirmWorkAdd, closeModalToConfirm, deleteWorkModal, addIconFirstFigure, isAdmin} from "../assets/function.js";
 
 // Admin //
 
+// Vérification si l'utlisateur possède un token pour avoir accès à la page admin
+// et génération de la page admin
 isAdmin();
 
     fetch("http://localhost:5678/api/works")
