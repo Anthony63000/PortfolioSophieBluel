@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./FrontEnd/assets/style.css">
+    <title>Login</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <nav>
+            <ul>
+                <a href="index.html"><li class="return-homepage">projets</li></a>
+                <li>contact</li>
+                <li class="li-bold">login</li>
+                <li><img src="./FrontEnd/assets/icons/instagram.png" alt="Instagram"></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <div class="title">
+                <h2>Log In</h2>
+            </div>
+            <form class="form" method="post">
+                <label for="Email">E-mail</label>
+                <input type="text" id="email" name="email">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password">
+                <div class="error">
+                    <p>Erreur dans l'identifiant ou le mot de passe</p>
+                </div>
+                <div class="button">
+                <input type="submit" value="Se connecter"></input>  
+                  </div>   
+            </form>
+           
+            <div class="lost-password">
+                <a href="#">Mot de passe oublié</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <nav class="nav-footer">
+            <ul>
+                <li>Mentions Légales</li>
+            </ul>
+        </nav>
+    </footer>
+
+<script src="./FrontEnd/assets/function.js" type="module"></script>    
+<script src="./FrontEnd/assets/login.js" type="module"></script>
+
+
+
+</body>
+</html>
