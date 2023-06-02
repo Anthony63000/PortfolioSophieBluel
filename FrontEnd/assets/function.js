@@ -434,6 +434,7 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
   export function confirmWorkAdd(uploadWorkadd) {
     uploadWorkadd.addEventListener('click', () => {
       uploadWork(formTitle, selectCategory, inputImage, token, formData);
+      location.reload();
     })
   }
 
@@ -526,6 +527,7 @@ export function openModal(modalOpen,windowModal1, windowModal2) {
               }
               else {
                   console.log("Une erreur est survenu.")
+                  location.reload();
               }
             })
           .catch(error => {
